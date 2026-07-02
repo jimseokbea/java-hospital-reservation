@@ -2,9 +2,7 @@ package hospital;
 
 import java.util.Scanner;
 
-import static java.awt.SystemColor.menu;
-
-public class main {
+public class Main {
     public static void main(String[] args) {
 
         /*
@@ -28,7 +26,11 @@ public class main {
 
         Scanner scanner = new Scanner(System.in);
 
-        String[] hospitels = {"예수병원, 전북대 병원, 대자인 병원"};
+            Hospital[] hospitels = {
+                    new Hospital("예수병원","정형외과","전주시 덕진구"),
+                            new Hospital("전북대 병원","내과","전주시 완산구"),
+                            new Hospital("대자인 병원","심장내과","서울시 중구")
+                    };
 
         while (true) {
             showMenu();
@@ -59,11 +61,13 @@ public class main {
             System.out.println("0. 종료");
             System.out.print("메뉴를 선택하세요 : ");
         }
-        public static void showHopitals(String[] hospitels){
+        public static void showHopitals(Hospital[] hospitels){
             System.out.println("병원 목록");
 
         for (int i = 0; i< hospitels.length;i++) {
-            System.out.println((i + 1) + "." + hospitels[i]);
+            System.out.println((i + 1) + "." + hospitels[i].name);
+            System.out.println("    진료과목:"  + hospitels[i].department);
+            System.out.println("    주소:"  + hospitels[i].address);
         }
         }
     }
