@@ -5,26 +5,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        /*
-        String userName = "배진석";
-        int userAge = 27;
-
-        String hospitName = "전주예수병원";
-        String medicalDepartment = "정형외과";
-        String resrvationDate = "2027-07-01";
-        String resrvationTime = "14:00";
-
-        System.out.println("===병원 예약 정보===");
-        System.out.println("예약자 이름 : " + userName);
-        System.out.println("예약자 나이 : " + userAge);
-        System.out.println("병원 이름 : " + hospitName);
-        System.out.println("진료과 : " + medicalDepartment);
-        System.out.println("예약일 : " + resrvationDate);
-        System.out.println("예약시간 : " + resrvationTime);
-         */
 
 
         Scanner scanner = new Scanner(System.in);
+
+        User user = new User("배진석",27,"010-6389--2983");
 
             Hospital[] hospitels = {
                     new Hospital("예수병원","정형외과","전주시 덕진구"),
@@ -32,18 +17,50 @@ public class Main {
                             new Hospital("대자인 병원","심장내과","서울시 중구")
                     };
 
+            Reservation reservation =null;
+
         while (true) {
             showMenu();
 
             int menu = scanner.nextInt();
 
             if (menu == 1) {
-                System.out.println("회원 등록 기능입니다.");
+                System.out.println("회원정보");
+                System.out.println("이름:" + user.name);
+                System.out.println("나이:" + user.age);
+                System.out.println("폰번호:" + user.phone);
             } else if (menu == 2) {
                showHopitals(hospitels);
             } else if (menu == 3) {
-                System.out.println("예약하기 기능입니다");
-            } else if (menu == 0) {
+                showHopitals(hospitels);
+                System.out.println("예약할 번호를 선택하세요: ");
+                int hospitaNumber = scanner.nextInt();
+                if (hospitaNumber < 1 || hospitaNumber > hospitels.length){
+                    System.out.println("잘못된 번호입니다.");
+                }else {
+                    Hospital selectedHospital = hospitels[hospitaNumber - 1];
+                    reservation = new Reservation(user, selectedHospital,"2026-07-02","14:00");
+
+                    System.out.println("예약이 완료되었습니다.");
+                    System.out.println("예약자: " + reservation.user.name);
+                    System.out.println("병원: " + reservation.hospital.name);
+                    System.out.println("진료과목: " + reservation.hospital.department);
+                    System.out.println("예약 날짜: " + reservation.date);
+                    System.out.println("예약 시간: " + reservation.time);
+                }
+            } else if (menu == 4) {
+                if (reservation == null) {
+                    System.out.println("예약 내역이 없습니다.");
+                } else {
+                    System.out.println("=== 내 예약 정보 ===");
+                    System.out.println("예약자: " + reservation.user.name);
+                    System.out.println("병원: " + reservation.hospital.name);
+                    System.out.println("진료과목: " + reservation.hospital.department);
+                    System.out.println("주소: " + reservation.hospital.address);
+                    System.out.println("예약 날짜: " + reservation.date);
+                    System.out.println("예약 시간: " + reservation.time);
+                }
+            } else if (menu == 0){
                 System.out.println("종료");
                 break;
             } else {
@@ -58,6 +75,7 @@ public class Main {
             System.out.println("1. 회원등록");
             System.out.println("2. 병원 목록 보기");
             System.out.println("3. 예약하기");
+            System.out.println("4. 내 예약보기");
             System.out.println("0. 종료");
             System.out.print("메뉴를 선택하세요 : ");
         }
