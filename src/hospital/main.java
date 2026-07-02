@@ -25,28 +25,37 @@ public class main {
         System.out.println("예약시간 : " + resrvationTime);
          */
 
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("== 병원 예약콘솔 프로그램 ==");
-        System.out.println("1. 회원등록");
-        System.out.println("2. 병원 목록 보기");
-        System.out.println("3. 예약하기");
-        System.out.println("4. 종료");
-        System.out.print("메뉴를 선택하세요 : ");
+        String [] hospitels={"예수병원, 전북대 병원, 대자인 병원"};
+        while (true) {
+            System.out.println("== 병원 예약콘솔 프로그램 ==");
+            System.out.println("1. 회원등록");
+            System.out.println("2. 병원 목록 보기");
+            System.out.println("3. 예약하기");
+            System.out.println("0. 종료");
+            System.out.print("메뉴를 선택하세요 : ");
 
-        int menu =scanner.nextInt();
+            int menu = scanner.nextInt();
 
-        if (menu == 1){
-            System.out.println("회원 등록 기능입니다.");
-        }else if (menu == 2){
-            System.out.println("병원 목록 보기 기능입니다.");
-        }else if (menu == 3){
-            System.out.println("예약하기 기능입니다");
-        }else if (menu == 0){
-            System.out.println("종료");
-        }else {
-            System.out.println("잘못된 메뉴입니다.");
+            if (menu == 1) {
+                System.out.println("회원 등록 기능입니다.");
+            } else if (menu == 2) {
+                System.out.println("병원 목록 보기 기능입니다.");
+
+                for (int i=0;i< hospitels.length;i++){
+                    System.out.println((i+1)+"."+hospitels[i]);
+                }
+            } else if (menu == 3) {
+                System.out.println("예약하기 기능입니다");
+            } else if (menu == 0) {
+                System.out.println("종료");
+                break;
+            } else {
+                System.out.println("잘못된 메뉴입니다.");
+            }
+            System.out.println();
         }
-
         scanner.close();
     }
 }
