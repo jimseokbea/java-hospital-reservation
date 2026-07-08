@@ -7,11 +7,11 @@ public class Reservation {
     String date;
     String time;
 
-    public Reservation(User user,Hospital hospital,String date, String time){
+    public Reservation(User user,Hospital hospitals,String date, String time){
         this.date=date;
         this.user=user;
         this.time=time;
-        this.hospital=hospital;
+        this.hospital=hospitals;
     }
 
 
